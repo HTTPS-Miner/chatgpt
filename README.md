@@ -3,8 +3,9 @@
 
 [![chatgpt preview video](https://i9.ytimg.com/vi_webp/01hDP4jskH8/mqdefault.webp?sqp=COjHmb0G&rs=AOn4CLAZp2k5PIcGK7HgXZ_sfC40iNQYOA)](https://www.youtube.com/watch?v=01hDP4jskH8)
 
-Req
+Tested in Python 3.11.2
 
+Req
 
 ```shell
 pip install undetected-geckodriver beautifulsoup4 html2text
