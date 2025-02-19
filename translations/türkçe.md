@@ -54,7 +54,7 @@ Bu aracın temel amacı, ChatGPT ile etkileşimleri hızlandırmak ve otomatikle
 
 3. Gerekli bağımlılıkları yükleyin:
    ```shell
-   pip install undetected-geckodriver beautifulsoup4 html2text
+   pip install undetected-geckodriver beautifulsoup4 html2text bs4
    ```
 
 4. Bulunduğunuz klasöre bir `prompt.txt` dosyası oluşturun ve ChatGPT'ye göndermek istediğiniz mesajı yazın.

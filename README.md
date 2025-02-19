@@ -56,7 +56,7 @@ The primary goal of this tool is to streamline and automate interactions with Ch
 
 3. Install the required dependencies:
    ```shell
-   pip install undetected-geckodriver beautifulsoup4 html2text
+   pip install undetected-geckodriver beautifulsoup4 html2text bs4
    ```
 
 4. Create a `prompt.txt` file in the current directory and write the message you want to send to ChatGPT.
