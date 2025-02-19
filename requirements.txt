@@ -1,2 +1,4 @@
 undetected-geckodriver
 selenium-wire
+html2text
+bs4
