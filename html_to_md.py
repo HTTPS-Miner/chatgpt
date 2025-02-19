@@ -1,8 +1,12 @@
 import os
+import sys
 import html2text
 from bs4 import BeautifulSoup
 
-def convert_html_to_md(html_file, md_file):
+def convert_html_to_md(html_file):
+    # Çıktı dosyasını belirle
+    md_file = os.path.splitext(html_file)[0] + ".md"
+    
     # HTML dosyasını oku
     with open(html_file, 'r', encoding='utf-8') as file:
         html_content = file.read()
@@ -23,13 +27,15 @@ def convert_html_to_md(html_file, md_file):
     
     print(f"Dönüştürme tamamlandı: {md_file}")
 
-# Dosya yolları
-html_file = "./output.html"
-md_file = "./output.md"
+# Komut satırından HTML dosyasını al
+if len(sys.argv) < 2:
+    print("Kullanım: python html_to_md.py <input_file>")
+    sys.exit(1)
+
+html_file = sys.argv[1]
 
 # Dönüştürme işlemini çalıştır
 if os.path.exists(html_file):
-    convert_html_to_md(html_file, md_file)
+    convert_html_to_md(html_file)
 else:
     print("Belirtilen HTML dosyası bulunamadı.")
-
