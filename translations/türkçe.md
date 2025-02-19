@@ -61,7 +61,7 @@ Bu aracın temel amacı, ChatGPT ile etkileşimleri hızlandırmak ve otomatikle
 
 5. Aracı çalıştırmak için:
    ```shell
-   python3 main.py
+   python3 main.py prompt.txt
    ```
 
 Tarayıcı ekranının açılmasını istemiyorsanız, işlemi tarayıcıyı açmadan gerçekleştirmek için `main.py` dosyasının 12. satırındaki yorumu kaldırabilirsiniz.

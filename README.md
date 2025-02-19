@@ -63,7 +63,7 @@ The primary goal of this tool is to streamline and automate interactions with Ch
 
 5. To run the tool:
    ```shell
-   python3 main.py
+   python3 main.py prompt.txt
    ```
 
 If you want to avoid opening the browser window, simply uncomment line 12 in main.py to perform the operation without opening the browser.
