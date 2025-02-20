@@ -42,11 +42,11 @@ except Exception as e:
 try:
     with open(filename, 'r', encoding='utf-8') as file:
         text_content = file.read()
-    
+
     # Write the text to the input field and press Enter
     element.send_keys(text_content)
     element.send_keys(Keys.ENTER)
-    
+
     print("Text successfully submitted.")
 except Exception as e:
     print(f"Failed to read the file: {filename}. Error: {str(e)}")
@@ -100,11 +100,21 @@ finally:
     driver.quit()
 
 try:
-    print("HTML'den Markdown'a dönüşüm başlatılıyor...")
-    md_output_file = f"{output_basename}.md"
-    result = subprocess.run(["python3", "html_to_md.py", html_output_file], capture_output=True, text=True)
-    print("Dönüşüm tamamlandı, çıktı:")
-    print(result.stdout)
+    if html_output_file:  # Dosya adı geçerli mi kontrol et
+        print(f"html_output_file ADI {html_output_file}")
+        print("HTML'den Markdown'a dönüşüm başlatılıyor...")
+
+        # Script'in bulunduğu dizini al
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        python_executable = os.path.join(script_dir, "myenv", "bin", "python")
+        md_output_file = f"{output_basename}.md"
+
+        result = subprocess.run([python_executable, os.path.join(script_dir, "html_to_md.py"), html_output_file], capture_output=True, text=True)
+        print("Dönüşüm tamamlandı, çıktı:")
+        print(result.stdout)
+    else:
+        print("HTML dosyası oluşturulamadığı için dönüşüm başlatılamadı.")
+
 except Exception as e:
     print(f"HTML'den Markdown'a hata oluştu: {str(e)}")
 
