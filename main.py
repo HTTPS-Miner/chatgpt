@@ -19,7 +19,7 @@ output_basename = os.path.splitext(filename)[0] + "-output"
 
 # Set Firefox options
 options = Options()
-# options.add_argument("--headless")  # Enable headless mode
+options.add_argument("--headless")  # Enable headless mode
 
 # Start the browser with the headless option
 driver = Firefox(options=options)
