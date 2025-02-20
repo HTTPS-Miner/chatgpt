@@ -54,52 +54,57 @@ except Exception as e:
     exit()
 
 try:
-    # Find the element initially
+    print("Element aranıyor...")
     element = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CLASS_NAME, "result-streaming"))
     )
+    print("Element bulundu!")
 
-    # Capture the initial content
     previous_content = element.get_attribute("innerHTML")
+    print("İlk içerik yakalandı.")
     start_time = time.time()
 
     while True:
         current_content = element.get_attribute("innerHTML")
         if current_content != previous_content:
+            print("İçerik değişti, zamanlayıcı sıfırlandı.")
             previous_content = current_content
             start_time = time.time()
         else:
             time.sleep(1)
             new_check = element.get_attribute("innerHTML")
             if new_check == current_content:
+                print("İçerik sabitlendi, döngüden çıkılıyor.")
                 break
 
         if time.time() - start_time > 20:
-            raise TimeoutError("Content did not stabilize, timeout!")
+            raise TimeoutError("İçerik stabilize olmadı, zaman aşımı!")
 
-    # Wait for final class change
+    print("Son sınıf değişimi bekleniyor...")
     element = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CLASS_NAME, "markdown"))
     )
+    print("Yeni sınıf bulundu!")
 
     html_content = element.get_attribute("innerHTML")
-
     html_output_file = f"{output_basename}.html"
     with open(html_output_file, "w", encoding="utf-8") as file:
         file.write(html_content)
-
-    print(f"Content change complete, HTML saved to {html_output_file}.")
+    print(f"İçerik değişimi tamamlandı, HTML kaydedildi: {html_output_file}")
 
 except Exception as e:
-    print(f"Content or class change failed! Error: {str(e)}")
+    print(f"İçerik veya sınıf değişimi başarısız! Hata: {str(e)}")
 
 finally:
+    print("Driver kapatılıyor...")
     driver.quit()
 
 try:
-    # Run the script
+    print("HTML'den Markdown'a dönüşüm başlatılıyor...")
     md_output_file = f"{output_basename}.md"
     result = subprocess.run(["python3", "html_to_md.py", html_output_file], capture_output=True, text=True)
+    print("Dönüşüm tamamlandı, çıktı:")
     print(result.stdout)
 except Exception as e:
-    print(f"html to md error: {str(e)}")
+    print(f"HTML'den Markdown'a hata oluştu: {str(e)}")
+
